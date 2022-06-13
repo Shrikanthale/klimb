@@ -47,13 +47,13 @@ router.get('/',(req,res)=>{
      sheet_namelist.forEach(element =>{
         var xlData=XLSX.utils.sheet_to_json(worklook.Sheets[sheet_namelist[x]])
         excelModel.insertMany(xlData,(err)=>{
+            console.log("data inserted")
             // console.log(xlData)
             if(err){
                 console.log(err)
             }
             else{
-              
-                console.log(xlData)
+                // console.log(xlData)
                 // res.end(data)
                 const arr=xlData.map(currElem=>{
                     if(currElem.Email!=null){ 
@@ -70,14 +70,15 @@ router.get('/',(req,res)=>{
                 
                 const arr1 = getUniqueListBy(arr, 'Email')
                 
-                console.log("Unique by Email")
-                console.log(JSON.stringify(arr1 ))
-                console.log(JSON.parse(JSON.stringify(arr1))
-                )
+                // console.log("Unique by Email")
+                // console.log(JSON.stringify(arr1 ))
+                console.log(JSON.parse(JSON.stringify(arr1)))
+                console.log("data inserted 1")
              
             }
 
-        })   
+          
+        })  
         x++
      })
      res.redirect('/')
